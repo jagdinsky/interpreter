@@ -1,16 +1,26 @@
 #include "support.hpp"
 
 std::string OPERTEXT[] = {
+    ":=",
     "(", ")",
+    "OR",
+    "AND",
+    "==", "!=", ">=", ">", "<=", "<",
     "+", "-",
     "*", "/", "%"
 };
 
 int PRIORITY[] = {
+    -1,
     0, 0,
-    1, 1,
-    2, 2, 2
+    1,
+    2,
+    3, 3, 3, 3, 3, 3,
+    4, 4,
+    5, 5, 5
 };
+
+std::unordered_map<std::string, int> var_map;
 
 Lexeme::Lexeme() {
 }
@@ -31,12 +41,16 @@ Number::Number(int x) {
     value = x;
 }
 
-void Number::print() {
-    std::cout << value << " ";
-}
-
 int Number::get_value() {
     return value;
+}
+
+void Number::set_value(int x) {
+    value = x;
+}
+
+void Number::print() {
+    std::cout << value << " ";
 }
 
 Number::~Number() {
@@ -50,10 +64,6 @@ Oper::Oper(int x) {
     op = OPERATOR(x);
 }
 
-void Oper::print() {
-    std::cout << OPERTEXT[op] << " ";
-}
-
 OPERATOR Oper::get_oper() {
     return op;
 }
@@ -62,7 +72,38 @@ int Oper::get_prio() {
     return PRIORITY[op];
 }
 
+void Oper::print() {
+    std::cout << OPERTEXT[op] << " ";
+}
+
 Oper::~Oper() {
+}
+
+Var::Var() {
+}
+
+Var::Var(std::string s) {
+    set_type(VARTYPE);
+    var_name = s;
+}
+
+int Var::get_value() {
+    return var_map[var_name];
+}
+
+void Var::set_value(int x) {
+    var_map[var_name] = x;
+}
+
+std::string Var::get_name() {
+    return var_name;
+}
+
+void Var::print() {
+    std::cout << var_map[var_name] << ' ';
+}
+
+Var::~Var() {
 }
 
 void print_vector(std::vector<Lexeme *> v) {
@@ -71,16 +112,24 @@ void print_vector(std::vector<Lexeme *> v) {
     std::cout << std::endl;
 }
 
-void delete_vector(std::vector<Lexeme *> v) {
+void clear_vector(std::vector<Lexeme *> v) {
     for (auto it: v)
         delete it;
+}
+
+void print_vars() {
+    std::cout << std::endl;
+    for (auto & unit: var_map)
+        std::cout << unit.first << ": "
+                            << unit.second << std::endl;
+    std::cout << std::endl;
 }
 
 Lexeme *get_number(std::string line, unsigned & i) {
     if (!isdigit(line[i]))
         return nullptr;
     int value = line[i] - '0';
-    while (isdigit(line[i + 1])) {
+    while (i + 1 < line.size() && isdigit(line[i + 1])) {
         value *= 10;
         value += line[i + 1] - '0';
         i++;
@@ -89,19 +138,10 @@ Lexeme *get_number(std::string line, unsigned & i) {
 }
 
 Lexeme *get_oper(std::string line, unsigned & i) {
-    bool flag;
     int enum_len = sizeof(OPERTEXT) / sizeof(std::string), unit_len;
-    for (int j = 0, k, shift; j < enum_len; j++) {
-        flag = true;
+    for (int j = 0; j < enum_len; j++) {
         unit_len = OPERTEXT[j].size();
-        for (k = 0, shift = i; k < unit_len && line[i] != '\n'
-                                        && line[i] != '\0'; k++, shift++) {
-            if (OPERTEXT[j][k] != line[shift]) {
-                flag = false;
-                break;
-            }
-        }
-        if (flag && k == unit_len) {
+        if (line.substr(i, unit_len) == OPERTEXT[j]) {
             i += unit_len - 1;
             return new Oper(j);
         }
@@ -109,20 +149,31 @@ Lexeme *get_oper(std::string line, unsigned & i) {
     return nullptr;
 }
 
+Lexeme *get_var(std::string line, unsigned & i) {
+    if (!isalpha(line[i]))
+        return nullptr;
+    std::string s = "";
+    for (s += line[i]; i + 1 < line.size() && isalpha(line[i + 1]); i++) {
+        s += line[i + 1];
+    }
+    return new Var(s);
+}
+
 std::vector<Lexeme *> parse_lexeme(std::string line) {
     std::vector<Lexeme *> infix;
     Lexeme *ptr;
-    for (unsigned i = 0; line[i] != '\n' && line[i] != '\0'; i++) {
+    for (unsigned i = 0; i < line.size(); i++) {
         while (line[i] == ' ' || line[i] == '\t')
             i++;
-        ptr = get_number(line, i);
+        if (!ptr)
+            ptr = get_number(line, i);
+        if (!ptr)
+            ptr = get_oper(line, i);
+        if (!ptr)
+            ptr = get_var(line, i);
         if (ptr) {
             infix.push_back(ptr);
-            continue;
-        }
-        ptr = get_oper(line, i);
-        if (ptr) {
-            infix.push_back(ptr);
+            ptr = nullptr;
             continue;
         }
         // ERROR
@@ -134,12 +185,12 @@ std::vector<Lexeme *> build_postfix(std::vector<Lexeme *> infix) {
     std::vector<Lexeme *> postfix;
     std::stack<Lexeme *> stack;
     for (auto it: infix) {
-        if (it -> get_type() == NUMBERTYPE) {
+        if (it -> get_type() == NUMBERTYPE || it -> get_type() == VARTYPE) {
             postfix.push_back(it);
         } else if (it -> get_type() == OPERTYPE) {
             if (((Oper *)it) -> get_oper() == RBRACKET) {
                 while (!stack.empty() && ((Oper *)stack.top()) -> get_oper()
-                                                                != LBRACKET) {
+                != LBRACKET) {
                     postfix.push_back(stack.top());
                     stack.pop();
                 }
@@ -148,10 +199,10 @@ std::vector<Lexeme *> build_postfix(std::vector<Lexeme *> infix) {
                 }
             } else {
                 while (!stack.empty()
-                            && ((Oper *)stack.top()) -> get_oper() != LBRACKET
-                            && ((Oper *)it) -> get_oper() != LBRACKET
-                            && ((Oper *)it) -> get_prio()
-                                    <= ((Oper *)stack.top()) -> get_prio()) {
+                && ((Oper *)stack.top()) -> get_oper() != LBRACKET
+                && ((Oper *)it) -> get_oper() != LBRACKET
+                && ((Oper *)it) -> get_prio()
+                <= ((Oper *)stack.top()) -> get_prio()) {
                     postfix.push_back(stack.top());
                     stack.pop();
                 }
@@ -166,38 +217,59 @@ std::vector<Lexeme *> build_postfix(std::vector<Lexeme *> infix) {
     return postfix;
 }
 
-int eval(std::vector<Lexeme *> postfix) {
-    std::stack<int> stack;
-    int tmp1, tmp2;
+Lexeme *calc(Lexeme *left, Lexeme *op, Lexeme *right) {
+    int left_val, right_val, res_val;
+    if (left -> get_type() == NUMBERTYPE)
+        left_val = ((Number *) left) -> get_value();
+    if (left -> get_type() == VARTYPE)
+        left_val = ((Var *) left) -> get_value();
+    if (right -> get_type() == NUMBERTYPE)
+        right_val = ((Number *) right) -> get_value();
+    if (right -> get_type() == NUMBERTYPE)
+        right_val = ((Number *) right) -> get_value();
+    if (((Oper *) op) -> get_oper() == ASSIGN) {
+        res_val = right_val;
+        ((Var *) left) -> set_value(res_val);
+    } else if (((Oper *) op) -> get_oper() == PLUS) {
+        res_val = left_val + right_val;
+    } else if (((Oper *) op) -> get_oper() == MINUS) {
+        res_val = left_val - right_val;
+    } else if (((Oper *) op) -> get_oper() == MULTIPLY) {
+        res_val = left_val * right_val;
+    } else if (((Oper *) op) -> get_oper() == DIV) {
+        res_val = left_val / right_val;
+    } else if (((Oper *) op) -> get_oper() == MOD) {
+        res_val = left_val % right_val;
+    }
+    Number *res = new Number(res_val);
+    return (Lexeme *) res;
+}
+
+void eval(std::vector<Lexeme *> postfix) {
+    std::stack<Lexeme *> stack;
+    std::vector<Lexeme *> memory;
+    Lexeme *left, *right, *res;
     for (auto it: postfix) {
-        if (it -> get_type() == NUMBERTYPE) {
-            stack.push(((Number *)it) -> get_value());
-        } else if (it -> get_type() == OPERTYPE /*&& stack numb*/) {
+        if (it -> get_type() == NUMBERTYPE
+                            || it -> get_type() == VARTYPE) {
+            stack.push(it);
+        } else if (it -> get_type() == OPERTYPE) {
             if (stack.empty()) {
                 std::cout << "EVAL ERROR" << std::endl; //ERROR
-                return 0;
+                return;
             }
-            tmp2 = stack.top();
+            right = stack.top();
             stack.pop();
             if (stack.empty()) {
                 std::cout << "EVAL ERROR" << std::endl; //ERROR
-                return 0;
+                return;
             }
-            tmp1 = stack.top();
+            left = stack.top();
             stack.pop();
-            if (((Oper *)it) -> get_oper() == PLUS) {
-                tmp1 += tmp2;
-            } else if (((Oper *)it) -> get_oper() == MINUS) {
-                tmp1 -= tmp2;
-            } else if (((Oper *)it) -> get_oper() == MULTIPLY) {
-                tmp1 *= tmp2;
-            } else if (((Oper *)it) -> get_oper() == DIV) {
-                tmp1 /= tmp2;
-            } else if (((Oper *)it) -> get_oper() == MOD) {
-                tmp1 %= tmp2;
-            }
-            stack.push(tmp1);
+            res = calc(left, it, right);
+            stack.push(res);
+            memory.push_back(res);
         }
     }
-    return stack.top();
+    clear_vector(memory);
 }
