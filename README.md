@@ -18,14 +18,11 @@ Our author code is written in "input/test.txt" file. It has following syntax fea
 2) There are only two data types: integer variables (int32) and arrays of integer variables.
     1. Variables are initialized by consecutives alphabetic letters and ASSIGN operator:
     > x := 3
-    2. Arrays are initialized by consecutives letters and rectangular brackets:
-    > arr[3]
-
-Array "arr[n]" is initialized for (n + 1) element, you can change value of the last element while initializing:
+    2. Arrays are initialized by consecutives letters and rectangular brackets. Array "arr[n]" is initialized for (n + 1) element, you can change value of the last element while initializing. After this code "arrone" will contain {0, 0, 0} and "arrtwo" will contain {0, 0, 0, 0, 6}.
   
-  > arr[3] = 5
+    > arrone[3]
+    > arrtwo[5] = 6
 
-Now "arr" contains {0, 0, 0, 5}.
 3) Program supports following operators:
     
     1. Left bracket
