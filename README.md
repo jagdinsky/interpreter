@@ -20,8 +20,8 @@ Our author code is written in "input/test.txt" file. It has following syntax fea
     > x := 3
     2. Arrays are initialized by consecutives letters and rectangular brackets. Array "arr[n]" is initialized for (n + 1) element, you can change value of the last element while initializing. After this code "arrone" will contain {0, 0, 0} and "arrtwo" will contain {0, 0, 0, 0, 6}.
   
-    > arrone[3]
-    > arrtwo[5] = 6
+    > arrone[2]
+    > arrtwo[4] = 6
 
 3) Program supports following operators:
     
