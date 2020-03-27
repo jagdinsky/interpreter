@@ -50,11 +50,11 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
     1. "if", "else", "endif":
     
-    `x := 0
+    ```x := 0
     
-    `y := 2
+    y := 2
     
-    `if x > y
+    if x > y
     
         y := 1
     
@@ -62,24 +62,24 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
         y := 2
     
-    `endif
+    endif
     
-    `exit`
+    exit```
     
     Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
     
     2. "while", "endwhile":
     
-    `x := 8
+    ```x := 8
     
-    `y := 3
+    y := 3
     
-    `while x > y
+    while x > y
     
         x := x - 2
     
-    `endwhile
+    endwhile
     
-    `exit`
+    exit```
     
     Now "x" is 2.
