@@ -51,14 +51,11 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     1. "if", "else", "endif":
     
     ```x := 0
-    
     y := 2
-    
     if x > y
     
         y := 1
-    
-   ` else
+    else
     
         y := 2
     
@@ -70,7 +67,7 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
     2. "while", "endwhile":
     
-    ```x := 8
+    ~~~~x := 8
     
     y := 3
     
@@ -80,6 +77,6 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
     endwhile
     
-    exit```
+    exit~~~~
     
     Now "x" is 2.
