@@ -1,4 +1,4 @@
-#INTERPRETER
+## INTERPRETER
 This program is special author code interpreter written on C++.
 > To compile file you need to run "Makefile" (in Linux-terminal) from the main "interpreter/" directory.
 > To run program you need to enter (in Linux-terminal) "./bin/interpreter < input/test.txt".
