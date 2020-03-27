@@ -52,19 +52,19 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
     `x := 0
     
-    y := 2
+    `y := 2
     
-    if x > y
+    `if x > y
     
         y := 1
     
-    else
+   ` else
     
         y := 2
     
-    endif
+    `endif
     
-    exit`
+    `exit`
     
     Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
     
@@ -72,14 +72,14 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
     `x := 8
     
-    y := 3
+    `y := 3
     
-    while x > y
+    `while x > y
     
         x := x - 2
     
-    endwhile
+    `endwhile
     
-    exit`
+    `exit`
     
     Now "x" is 2.
