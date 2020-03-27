@@ -28,48 +28,63 @@ Now "arr" contains {0, 0, 0, 5}.
 3) Program supports following operators:
     
     1. Left bracket
+    
     > (
     
     2. Right bracket
+    
     > )
     
     3. Logical OR
+    
     > OR
     
     4. Logical AND
+    
     > AND
     
     5. Equal
+    
     > ==
     
     6. Not equal
+    
     > !=
     
     7. Greater or equal
+    
     > >=
     
     8. Greater
+    
     > >
     
     9. Less or equal
+    
     > <=
     
     10. Less
+    
     > <
     
     11. Plus
+    
     > +
     
     12. Minus
+    
     > -
     
     13. Multiply
+    
     > *
     
     14. Result of integer division
+    
     > /
     
     15. Remainder of integer division
+    
     > %
     
 4) Interpreter supports straight code execution as well as conditional expressions and loops.
@@ -82,6 +97,7 @@ Now "arr" contains {0, 0, 0, 5}.
     >     y := 2
     > endif
     > exit
+    
     Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
     2. "while", "endwhile":
     > x := 8
@@ -90,4 +106,5 @@ Now "arr" contains {0, 0, 0, 5}.
     >     x := x - 2
     > endwhile
     > exit
+    
     Now "x" is 2.
