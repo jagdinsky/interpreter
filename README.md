@@ -48,7 +48,7 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
 4) Interpreter supports straight code execution as well as conditional expressions and loops.
     
-    1. "if", "else", "endif":
+    1. "if", "else", "endif" (or only "if" and "endif"):
     ~~~~
     x := 0
     y := 2
@@ -61,7 +61,7 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     ~~~~
 
     
-    Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
+        Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
     
     2. "while", "endwhile":
     ~~~~
@@ -73,4 +73,4 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     exit
     ~~~~
     
-    Now "x" is 2.
+        Now "x" is 2.
