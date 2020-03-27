@@ -26,8 +26,9 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
 
 3) Program supports following operators:
     
+    | OPERATOR | SIGN |
+    | ----------- | ----------- |
     | Left bracket | ( |
-    
     | Right bracket | ) |
     
     3. Logical OR
