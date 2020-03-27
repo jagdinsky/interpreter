@@ -30,58 +30,19 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     | ----------- | ----------- |
     | Left bracket | ( |
     | Right bracket | ) |
-    
-    3. Logical OR
-    
-    > OR
-    
-    4. Logical AND
-    
-    > AND
-    
-    5. Equal
-    
-    > ==
-    
-    6. Not equal
-    
-    > !=
-    
-    7. Greater or equal
-    
-    > >=
-    
-    8. Greater
-    
-    > >
-    
-    9. Less or equal
-    
-    > <=
-    
-    10. Less
-    
-    > <
-    
-    11. Plus
-    
-    > +
-    
-    12. Minus
-    
-    > -
-    
-    13. Multiply
-    
-    > *
-    
-    14. Result of integer division
-    
-    > /
-    
-    15. Remainder of integer division
-    
-    > %
+    | Logical OR | OR |
+    | Logical AND | AND |
+    | Equal | == |
+    | Not equal | != |
+    | Greater or equal | >= |
+    | Greater | > |
+    | Less or equal | <= |
+    | Less | < |
+    | Plus | + |
+    | Minus | - |
+    | Multiply | * |
+    | Integer division | / |
+    | Integer division remainder | % |
     
 4) Interpreter supports straight code execution as well as conditional expressions and loops.
     1. "if", "else", "endif":
