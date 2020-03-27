@@ -11,6 +11,8 @@ This program is special author code interpreter written on C++.
 
 (in Linux-terminal) from the main "interpreter/" directory.
 
+![Screenshot](https://github.com/jagdinsky/interpreter/blob/master/execscreenshot.png)
+
 User's code for interpreting is written in "input/test.txt" file. It has following syntax features:
 -
 1) Code ends with an "exit" line:
