@@ -18,9 +18,9 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
 1) Program contains ASSIGN operator:
     > :=
 2) There are only two data types: integer variables (int32) and arrays of integer variables.
-    1. Variables are initialized by consecutives alphabetic letters and ASSIGN operator:
+    1. Variables are initialized with 0 by consecutives alphabetic letters and ASSIGN operator:
     > x := 3
-    2. Arrays are initialized by consecutives letters and rectangular brackets. Array "arr[n]" is initialized for (n + 1) element, you can change value of the last element while initializing. After this code "arrone" will contain {0, 0, 0} and "arrtwo" will contain {0, 0, 0, 0, 6}.
+    2. Arrays are initialized with all 0 by consecutives letters and rectangular brackets. Array "arr[n]" is initialized for (n + 1) element, you can change value of the last element while initializing. After this code "arrone" will contain {0, 0, 0} and "arrtwo" will contain {0, 0, 0, 0, 6}.
   
     > arrone[2]
     
