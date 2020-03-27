@@ -11,6 +11,7 @@ This program is special author code interpreter written on C++.
 (in Linux-terminal) from the main "interpreter/" directory.
 
 User's code for interpreting is written in "input/test.txt" file. It has following syntax features:
+-
 1) Code ends with an "exit" line:
     > exit
 1) Program contains ASSIGN operator:
