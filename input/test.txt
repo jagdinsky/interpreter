@@ -1,7 +1,7 @@
 a[20]
 i := 0
 while i <= 20
-	if i % 2
+	if i % 2 == 0
 		a[i] := i
 	else
 		a[i] := 75
