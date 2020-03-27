@@ -1,0 +1,11 @@
+a[20]
+i := 0
+while i <= 20
+	if i % 2
+		a[i] := i
+	else
+		a[i] := 75
+	endif
+	i := i + 1
+endwhile
+exit
