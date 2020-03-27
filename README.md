@@ -59,9 +59,11 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     endif
     exit
     ~~~~
-Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
+
+    Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
     
     2. "while", "endwhile":
+    
     ~~~~
     x := 8
     y := 3
@@ -70,4 +72,5 @@ Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
     endwhile
     exit
     ~~~~
-Now "x" is 2.
+
+    Now "x" is 2.
