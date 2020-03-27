@@ -49,14 +49,14 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
 4) Interpreter supports straight code execution as well as conditional expressions and loops.
     
     1. "if", "else", "endif":
-    `x := 0`
-    `y := 2`
+    `x := 0
+    y := 2
     if x > y
         y := 1
     else
         y := 2
     endif
-    `exit`
+    exit`
     
     Now "y" is 2, because in this case "if x > y" means "if 0" or "if false".
     
