@@ -1,5 +1,6 @@
-## INTERPRETER
+# INTERPRETER
 This program is special author code interpreter written on C++.
+-
 1. To compile file you need to run Makefile by
 > make
 
