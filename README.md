@@ -22,7 +22,8 @@ Our author code is written in "input/test.txt" file. It has following syntax fea
     > arr[3]
 
 Array "arr[n]" is initialized for (n + 1) element, you can change value of the last element while initializing:
-    > arr[3] = 5
+  
+  > arr[3] = 5
 
 Now "arr" contains {0, 0, 0, 5}.
 3) Program supports following operators:
