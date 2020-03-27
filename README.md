@@ -4,6 +4,7 @@ This program is special author code interpreter written on C++.
 > make
 
 (in Linux-terminal) from the main "interpreter/" directory.
+
 2. To run program you need to enter
 > ./bin/interpreter < input/test.txt
 
@@ -25,36 +26,52 @@ Array "arr[n]" is initialized for (n + 1) element, you can change value of the l
 
 Now "arr" contains {0, 0, 0, 5}.
 3) Program supports following operators:
+    
     1. Left bracket
     > (
+    
     2. Right bracket
     > )
+    
     3. Logical OR
     > OR
+    
     4. Logical AND
     > AND
-    4. Equal
+    
+    5. Equal
     > ==
-    5. Not equal
+    
+    6. Not equal
     > !=
-    6. Greater or equal
+    
+    7. Greater or equal
     > >=
-    7. Greater
+    
+    8. Greater
     > >
-    8. Less or equal
+    
+    9. Less or equal
     > <=
-    9. Less
+    
+    10. Less
     > <
-    10. Plus
+    
+    11. Plus
     > +
-    11. Minus
+    
+    12. Minus
     > -
-    12. Multiply
+    
+    13. Multiply
     > *
-    13. Result of integer division
+    
+    14. Result of integer division
     > /
-    14. Remainder of integer division
+    
+    15. Remainder of integer division
     > %
+    
 4) Interpreter supports straight code execution as well as conditional expressions and loops.
     1. "if", "else", "endif":
     > x := 0
