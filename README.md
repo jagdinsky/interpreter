@@ -1,7 +1,11 @@
 ## INTERPRETER
 This program is special author code interpreter written on C++.
-> To compile file you need to run "Makefile" (in Linux-terminal) from the main "interpreter/" directory.
-> To run program you need to enter (in Linux-terminal) "./bin/interpreter < input/test.txt".
+1. To compile file you need to run Makefile by
+> make
+(in Linux-terminal) from the main "interpreter/" directory.
+2. To run program you need to enter
+> ./bin/interpreter < input/test.txt
+(in Linux-terminal) from the main "interpreter/" directory.
 
 Our author code is written in "input/test.txt" file. It has following syntax features:
 1) Code ends with an "exit" line:
