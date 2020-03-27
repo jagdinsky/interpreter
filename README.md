@@ -10,7 +10,7 @@ This program is special author code interpreter written on C++.
 
 (in Linux-terminal) from the main "interpreter/" directory.
 
-Our author code is written in "input/test.txt" file. It has following syntax features:
+User's code for interpreting is written in "input/test.txt" file. It has following syntax features:
 1) Code ends with an "exit" line:
     > exit
 1) Program contains ASSIGN operator:
@@ -25,13 +25,9 @@ Our author code is written in "input/test.txt" file. It has following syntax fea
 
 3) Program supports following operators:
     
-    1. Left bracket
+    |Left bracket|(|
     
-    > (
-    
-    2. Right bracket
-    
-    > )
+    |Right bracket|)|
     
     3. Logical OR
     
