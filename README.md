@@ -2,13 +2,15 @@
 This program is special author code interpreter written on C++.
 -
 1. To compile file you need to run Makefile by
-> make
-
+    ~~~~
+    make
+    ~~~~
 (in Linux-terminal) from the main "interpreter/" directory.
 
 2. To run program you need to enter
-> ./bin/interpreter < input/test.txt
-
+    ~~~~
+    ./bin/interpreter < input/test.txt
+    ~~~~
 (in Linux-terminal) from the main "interpreter/" directory.
 
 ![Screenshot](https://github.com/jagdinsky/interpreter/blob/master/execscreenshot.png)
@@ -16,18 +18,23 @@ This program is special author code interpreter written on C++.
 User's code for interpreting is written in "input/test.txt" file. It has following syntax features:
 -
 1) Code ends with an "exit" line:
-    > exit
+    ~~~~
+    exit
+    ~~~~
 1) Program contains ASSIGN operator:
-    > :=
+    ~~~~
+    :=
+    ~~~~
 2) There are only two data types: integer variables (int32) and arrays of integer variables.
     1. Variables are initialized with 0 by consecutives alphabetic letters and ASSIGN operator:
-    > x := 3
+    ~~~~
+    x := 3
+    ~~~~
     2. Arrays are initialized with all 0 by consecutives letters and rectangular brackets. Array "arr[n]" is initialized for (n + 1) element, you can change value of the last element while initializing. After this code "arrone" will contain {0, 0, 0} and "arrtwo" will contain {0, 0, 0, 0, 6}.
-  
-    > arrone[2]
-    
-    > arrtwo[4] = 6
-
+    ~~~~
+    arrone[2]
+    arrtwo[4] = 6
+    ~~~~
 3) Program supports following operators:
     
     | OPERATOR | SIGN |
