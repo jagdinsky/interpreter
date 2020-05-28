@@ -39,8 +39,6 @@ User's code for interpreting is written in "input/test.txt" file. It has followi
     
     | OPERATOR | SIGN |
     | ----------- | ----------- |
-    | Left bracket | ( |
-    | Right bracket | ) |
     | Logical OR | OR |
     | Logical AND | AND |
     | Equal | == |
